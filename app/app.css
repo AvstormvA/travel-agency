@@ -306,14 +306,14 @@
   }
 
   .nav-footer {
-    @apply flex items-center gap-2.5 pb-8;
+    @apply flex items-center justify-between gap-2.5 pb-8;
 
     img {
       @apply size-10 rounded-full aspect-square;
     }
 
     article {
-      @apply flex flex-col gap-[2px] max-w-[115px];
+      @apply flex flex-col max-w-[115px];
 
       h2 {
         @apply text-sm md:text-base font-semibold text-dark-200 truncate;
