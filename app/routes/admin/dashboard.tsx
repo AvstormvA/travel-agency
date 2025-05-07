@@ -1,13 +1,10 @@
 import { formatDate } from "lib/utils";
+import { getUser } from "~/modules/appwrite/auth";
 import StatsCard from "~/modules/dashboard/ui/charts/stats-card";
 import TripCard from "~/modules/dashboard/ui/charts/trip-card";
 import Header from "~/modules/dashboard/ui/components/header";
+import type { Route } from "./+types/dashboard";
 
-const user = {
-  name: "Test",
-  email: "test@gmail.com",
-  imageUrl: "/assets/images/david.webp"
-}
 const dashboardStats = {
   users: {
     total: 12450,
@@ -63,37 +60,16 @@ const allTrips = [
     estimatedPrice: "$4,000"
   }
 ];
-const users = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john.doe@example.com",
-    imageUrl: "/assets/images/david.webp",
-    dateJoined: formatDate("2025-01-01"),
-    itineraryCreated: 10,
-    status: "user"
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane.smith@example.com",
-    imageUrl: "/assets/images/david.webp",
-    dateJoined: formatDate("2025-01-02"),
-    itineraryCreated: 4,
-    status: "user"
-  },
-  {
-    id: 3,
-    name: "John Smith",
-    email: "john.smith@example.com",
-    imageUrl: "/assets/images/david.webp",
-    dateJoined: formatDate("2025-01-03"),
-    itineraryCreated: 8,
-    status: "admin"
-  }
-];
 
-const DashboardPage = () => {
+export async function clientLoader() {
+  const user = await getUser();
+
+  return user;
+}
+
+const DashboardPage = ({ loaderData }: Route.ComponentProps) => {
+  const user = loaderData as User | null;
+
   return (
     <main className="dashboard wrapper">
       <Header
