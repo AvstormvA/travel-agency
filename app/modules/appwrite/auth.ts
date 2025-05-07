@@ -102,7 +102,7 @@ export const getExistingUser = async (id: string) => {
   }
 };
 
-export const getAllUsers = async (limit: number, offset: number) => {
+export const getAllUsers = async (limit: number, offset: number): Promise<{ users: any[], total: number }> => {
   try {
     const { documents: users, total } = await database.listDocuments(
       appwriteConfig.databaseId,
@@ -113,8 +113,8 @@ export const getAllUsers = async (limit: number, offset: number) => {
     if (total === 0) return { users: [], total };
 
     return { users, total };
-  } catch (e) {
-    console.log('Error fetching users')
+  } catch (error) {
+    console.error("Error fetching users", error)
     return { users: [], total: 0 }
   }
 };
