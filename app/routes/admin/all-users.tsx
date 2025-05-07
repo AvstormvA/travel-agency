@@ -1,6 +1,6 @@
 import Header from "~/modules/dashboard/ui/components/header";
 
-const AllUsers = () => {
+const AllUsersPage = () => {
   const user = {
     name: "Test",
     email: "test@gmail.com",
@@ -17,4 +17,4 @@ const AllUsers = () => {
   )
 }
 
-export default AllUsers
+export default AllUsersPage
