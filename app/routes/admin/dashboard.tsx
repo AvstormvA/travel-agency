@@ -1,4 +1,3 @@
-import { formatDate } from "lib/utils";
 import { getUser } from "~/modules/appwrite/auth";
 import StatsCard from "~/modules/dashboard/ui/charts/stats-card";
 import TripCard from "~/modules/dashboard/ui/charts/trip-card";

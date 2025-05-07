@@ -109,7 +109,6 @@ export const getAllUsers = async (limit: number, offset: number): Promise<{ user
       appwriteConfig.usersCollectionId,
       [Query.limit(limit), Query.offset(offset)]
     )
-
     if (total === 0) return { users: [], total };
 
     return { users, total };
