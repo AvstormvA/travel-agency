@@ -16,7 +16,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
     const [trip, allTrips] = await Promise.all([
       getTripById(tripId),
       getAllTrips(4, 0)
-
     ]);
     if (!trip) throw new Error(`Trip with ID ${tripId} not found`);
 
@@ -26,7 +25,6 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
         id: trip.$id,
         ...parseTripData(trip.tripDetails),
         imageUrls: trip.imageUrls ?? []
-
       })) || []
     };
   } catch (error) {
@@ -54,9 +52,9 @@ const TripDetails = ({ loaderData }: Route.ComponentProps) => {
     <main className="travel-detail wrapper">
       <Header title="Trip Details" description="View and edit AI-generated travel plans" />
       <section className="container wrapper">
-        <header>
+        <header className="w-full">
           <h1 className="p-40-semibold text-dark-100">{tripData.name}</h1>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-5 overflow-hidden w-full">
             <InfoPill
               text={`${tripData.duration} ${tripData.duration > 1 ? "days" : "day"} plan`}
               image="/assets/icons/calendar.svg"

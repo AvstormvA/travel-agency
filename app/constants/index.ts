@@ -67,6 +67,7 @@ export const travelStyles = [
   "Cultural",
   "Nature & Outdoors",
   "City Exploration",
+  "Work"
 ];
 
 export const interests = [
