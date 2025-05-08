@@ -12,19 +12,27 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   const tripId = params.tripId;
   if (!tripId) throw new Error("Trip ID is required");
 
-  const [trip, allTrips] = await Promise.all([
-    getTripById(tripId),
-    getAllTrips(4, 0)
-  ]);
+  try {
+    const [trip, allTrips] = await Promise.all([
+      getTripById(tripId),
+      getAllTrips(4, 0)
 
-  return {
-    trip,
-    allTrips: allTrips.allTrips.map((trip) => ({
-      id: trip.$id,
-      ...parseTripData(trip.tripDetails),
-      imageUrls: trip.imageUrls ?? []
-    }))
-  };
+    ]);
+    if (!trip) throw new Error(`Trip with ID ${tripId} not found`);
+
+    return {
+      trip,
+      allTrips: allTrips?.allTrips?.map((trip) => ({
+        id: trip.$id,
+        ...parseTripData(trip.tripDetails),
+        imageUrls: trip.imageUrls ?? []
+
+      })) || []
+    };
+  } catch (error) {
+    console.error("Failed to load trip details:", error);
+    throw new Response("Failed to load trip details", { status: 500 });
+  }
 };
 
 const TripDetails = ({ loaderData }: Route.ComponentProps) => {
@@ -54,7 +62,7 @@ const TripDetails = ({ loaderData }: Route.ComponentProps) => {
               image="/assets/icons/calendar.svg"
             />
             <InfoPill
-              text={[...new Set(tripData?.itinerary?.map((item) => item.location))].join(", ") || ""}
+              text={tripData?.itinerary ? [...new Set(tripData.itinerary.map((item) => item.location))].join(", ") : "No locations"}
               image="/assets/icons/location-mark.svg"
             />
           </div>
@@ -132,8 +140,8 @@ const TripDetails = ({ loaderData }: Route.ComponentProps) => {
                 key={trip.id}
                 id={trip.id}
                 name={trip.name}
-                location={trip.itinerary?.[0].location ?? ""}
-                imageUrl={trip.imageUrls[0]}
+                location={trip.itinerary?.[0]?.location ?? "Unknown location"}
+                imageUrl={trip.imageUrls?.[0] ?? "/assets/images/placeholder.jpg"}
                 tags={[trip.interests, trip.travelStyle]}
                 price={trip.estimatedPrice}
               />
