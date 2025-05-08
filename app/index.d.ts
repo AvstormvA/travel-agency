@@ -96,21 +96,21 @@ declare interface TrendResult {
 }
 
 declare interface DashboardStats {
-  totalUsers: number;
-  usersJoined: {
-    currentMonth: number;
-    lastMonth: number;
-  };
+  users: {
+    totalUsers: number,
+    currentMonth: number,
+    lastMonth: number
+  },
+  trips: {
+    totalTrips: number,
+    currentMonth: number,
+    lastMonth: number
+  },
   userRole: {
-    total: number;
-    currentMonth: number;
-    lastMonth: number;
-  };
-  totalTrips: number;
-  tripsCreated: {
-    currentMonth: number;
-    lastMonth: number;
-  };
+    total: number,
+    currentMonth: number,
+    lastMonth: number
+  }
 }
 
 declare interface CreateTripResponse {

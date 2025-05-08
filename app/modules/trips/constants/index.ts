@@ -1,1 +1,1 @@
-export const TRIPS_PER_PAGE = 8;
+export const TRIPS_PER_PAGE = 100;

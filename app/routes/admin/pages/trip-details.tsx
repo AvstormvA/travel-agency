@@ -1,9 +1,9 @@
 import type { LoaderFunctionArgs } from "react-router";
 import { ChipDirective, ChipListComponent, ChipsDirective } from "@syncfusion/ej2-react-buttons";
 
-import type { Route } from "./+types/trip-detail";
+import type { Route } from "./+types/trip-details";
 import { cn, parseTripData } from "lib/utils";
-import { getAllTrips, getTripById } from "~/modules/appwrite/trips";
+import { getAllTrips, getTripById } from "~/modules/trips/lib/procedures";
 import Header from "~/modules/dashboard/ui/components/header";
 import InfoPill from "~/modules/trips/ui/components/info-pill";
 import TripCard from "~/modules/dashboard/ui/charts/trip-card";
@@ -33,7 +33,7 @@ export const loader = async ({ params }: LoaderFunctionArgs) => {
   }
 };
 
-const TripDetails = ({ loaderData }: Route.ComponentProps) => {
+const TripDetailsPage = ({ loaderData }: Route.ComponentProps) => {
   const allTrips = loaderData?.allTrips as Trip[] | [];
   const tripData = parseTripData(loaderData?.trip?.tripDetails) as Trip;
   const tripImages = loaderData?.trip?.imageUrls || [];
@@ -151,4 +151,4 @@ const TripDetails = ({ loaderData }: Route.ComponentProps) => {
   )
 }
 
-export default TripDetails
+export default TripDetailsPage

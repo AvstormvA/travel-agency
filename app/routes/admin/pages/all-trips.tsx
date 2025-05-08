@@ -1,11 +1,9 @@
-import { useState } from "react";
-import { useSearchParams, type LoaderFunctionArgs } from "react-router";
-import { PagerComponent } from "@syncfusion/ej2-react-grids";
+import { type LoaderFunctionArgs } from "react-router";
 
 import type { Route } from "./+types/all-trips";
+import { getAllTrips } from "~/modules/trips/lib/procedures";
 import { TRIPS_PER_PAGE } from "~/modules/trips/constants";
 import { parseTripData } from "lib/utils";
-import { getAllTrips } from "~/modules/appwrite/trips";
 import Header from "~/modules/dashboard/ui/components/header";
 import TripCard from "~/modules/dashboard/ui/charts/trip-card";
 
@@ -32,16 +30,16 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   }
 };
 
-const AllTrips = ({ loaderData }: Route.ComponentProps) => {
+const AllTripsPage = ({ loaderData }: Route.ComponentProps) => {
   const allTrips = loaderData?.allTrips as Trip[] | [];
-  const [searchParams] = useSearchParams();
-  const initialPage = Number(searchParams.get("page") || "1");
-  const [currentPage, setCurrentPage] = useState<number>(initialPage);
+  // const [searchParams] = useSearchParams();
+  // const initialPage = Number(searchParams.get("page") || "1");
+  // const [currentPage, setCurrentPage] = useState<number>(initialPage);
 
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    window.location.search = `?page=${page}`;
-  }
+  // const handlePageChange = (page: number) => {
+  //   setCurrentPage(page);
+  //   window.location.search = `?page=${page}`;
+  // }
 
   return (
     <main className="all-users wrapper">
@@ -73,4 +71,4 @@ const AllTrips = ({ loaderData }: Route.ComponentProps) => {
   )
 }
 
-export default AllTrips
+export default AllTripsPage
