@@ -19,6 +19,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Travel Agency</title>
+        <meta name="description" content="Your trusted partner for unforgettable travel experiences" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
         <Meta />
         <Links />
       </head>
