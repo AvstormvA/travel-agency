@@ -1,0 +1,1 @@
+export const TRIPS_PER_PAGE = 8;

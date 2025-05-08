@@ -55,13 +55,14 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setLoading(true);
+    setError(null);
 
     if (!formData.country || !formData.travelStyle || !formData.interest || !formData.budget || !formData.groupType) {
       setError("Please provide values for all fields");
       setLoading(false)
       return;
     }
-    if (formData.duration < 1 || formData.duration > 10) {
+    if (formData.duration < 1 || formData.duration > 31) {
       setError("Duration must be between 1 and 10 days");
       setLoading(false);
       return;
