@@ -17,9 +17,9 @@ export async function clientLoader() {
     getUser(),
     getUsersAndTripsStats(),
     getAllTrips(TRIPS_PER_PAGE, 0),
-    await getUserGrowthPerDay(),
-    await getTripsByTravelStyle(),
-    await getAllUsers(4, 0)
+    getUserGrowthPerDay(),
+    getTripsByTravelStyle(),
+    getAllUsers(4, 0)
   ]);
 
   const allTrips = trips.allTrips.map(({ $id, tripDetails, imageUrls }) => ({

@@ -7,7 +7,7 @@ const RootNavbar = () => {
   const navigate = useNavigate();
   const location = useLocation()
   const params = useParams();
-  const user = useLoaderData();
+  const user = useLoaderData<UserData>();
 
   const handleLogout = async () => {
     await logoutUser();
