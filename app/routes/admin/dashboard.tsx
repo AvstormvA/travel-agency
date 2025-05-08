@@ -1,8 +1,8 @@
+import type { Route } from "./+types/dashboard";
 import { getUser } from "~/modules/appwrite/auth";
 import StatsCard from "~/modules/dashboard/ui/charts/stats-card";
 import TripCard from "~/modules/dashboard/ui/charts/trip-card";
 import Header from "~/modules/dashboard/ui/components/header";
-import type { Route } from "./+types/dashboard";
 
 const dashboardStats = {
   users: {
@@ -71,10 +71,7 @@ const DashboardPage = ({ loaderData }: Route.ComponentProps) => {
 
   return (
     <main className="dashboard wrapper">
-      <Header
-        title={`Welcome ${user?.name || "Guest"} 👋`}
-        description="Track activity, trends and popular destinations in real time"
-      />
+      <Header title={`Welcome ${user?.name || "Guest"} 👋`} description="Track activity, trends and popular destinations in real time" />
       <section className="flex flex-col gap-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatsCard

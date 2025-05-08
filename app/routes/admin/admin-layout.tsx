@@ -16,7 +16,7 @@ export async function clientLoader() {
 
     return existingUser?.$id ? existingUser : await storeUserData();
   } catch (error) {
-    console.log("Error in clientLoader", error)
+    console.error("Error in clientLoader", error)
     return redirect("/sign-in")
   }
 }
