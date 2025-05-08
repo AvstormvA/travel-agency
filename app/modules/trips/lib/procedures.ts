@@ -1,6 +1,6 @@
 import { Query } from "appwrite";
 
-import { appwriteConfig, database } from "./client";
+import { appwriteConfig, database } from "~/modules/appwrite/client";
 
 export const getAllTrips = async (limit: number, offset: number) => {
   const allTrips = await database.listDocuments(

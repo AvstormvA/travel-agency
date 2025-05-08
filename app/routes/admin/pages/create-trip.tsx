@@ -23,7 +23,7 @@ export const loader = async () => {
   }));
 }
 
-const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
+const CreateTripPage = ({ loaderData }: Route.ComponentProps) => {
   const countries = loaderData as Country[];
   const navigate = useNavigate();
   const [formData, setFormData] = useState<TripFormData>({
@@ -203,4 +203,4 @@ const CreateTrip = ({ loaderData }: Route.ComponentProps) => {
   )
 }
 
-export default CreateTrip
+export default CreateTripPage
