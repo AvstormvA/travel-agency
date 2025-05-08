@@ -11,6 +11,11 @@ export const action = async ({ request }: ActionFunctionArgs) => {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
   const unsplashApiKey = process.env.UNSPLASH_ACCESS_KEY!;
 
+  if (!genAI || !unsplashApiKey) return new Response(JSON.stringify({ error: "Missing API keys" }), {
+    status: 500,
+    headers: { "Content-Type": "application/json" }
+  });
+
   try {
     const prompt = `Generate a ${numberOfDays}-day travel itinerary for ${country} based on the following user information:
         Budget: "${budget}"
