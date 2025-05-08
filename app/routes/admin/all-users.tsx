@@ -16,10 +16,7 @@ const AllUsersPage = ({ loaderData }: Route.ComponentProps) => {
 
   return (
     <main className="all-users wrapper">
-      <Header
-        title="Manage Users"
-        description="Filter, sort and access detailed user profiles"
-      />
+      <Header title="Manage Users" description="Filter, sort and access detailed user profiles" />
       <GridComponent dataSource={users} gridLines="None">
         <ColumnsDirective>
           <ColumnDirective
